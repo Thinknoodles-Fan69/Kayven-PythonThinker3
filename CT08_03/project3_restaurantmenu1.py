@@ -22,7 +22,10 @@ while item != "no more":
         sure = input(f"You sure you want ah? The {item} costs {price} :").lower().strip()
 
         if sure == "yes":
-            eating[item] = price
+            if item in eating:
+                eating[item] = price + price
+            else: 
+                eating[item] = price
             
 
             if price > dolla:
