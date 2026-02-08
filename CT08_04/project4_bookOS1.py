@@ -10,23 +10,38 @@ things = {
     "calculator": 35.00
     }
 
-take = {}
+
+take = {
+    
+}
+
+temp_qty_cost = {
+    "quantity": 0,
+    "cost": 0
+}
 
 print("Welcome to store.")
 for thing, value in things.items():
     print(f"{thing}: {value}")
+
+print("---------------------------------------------")
 
 thingy = input("What? :").lower().strip()
 
 while thingy != "no more":
 
     if thingy in things:
-        price = things[thingy]
-        confirm = input(f"{thingy}: {price}. Sure? :").lower().strip()
+        amount = input("how many? :")
+        # print(things[thingy])
+        price = things[thingy] * float(amount)
+        confirm = input(f"{thingy}* {amount}: {price} . Sure? :").lower().strip()
+        
 
         if confirm == "yes":
-            take[thingy] = price
-            thingy = input("Anymore? :").lower().strip()
+                take[thingy] = temp_qty_cost
+                take[thingy]["quantity"] = amount
+                take[thingy]["cost"] = price
+                thingy = input("Anymore? :").lower().strip()
         
         else:
             print("mhm")
@@ -38,11 +53,12 @@ while thingy != "no more":
 
 
 print("----------------------------------------------")
+print("Things:")
 
 total = 0
-for thingssss, money in take.items():
-    print("Things:")
-    print(f"{thingssss}: ${money}")
+for thingssss, thingys in take.items():
+    
+    print(f"{thingssss}: {thingys}")
     total += money
 
 print(f"Total is ${total}")
