@@ -26,6 +26,12 @@ while item != "no more":
                 eating[item] = price + price
             else: 
                 eating[item] = price
+            # need to check for the item is it already in the eating
+            # if already in the eating
+            # eating[item] += price because if you do not do these you will only overwrite the entry
+            # else the below
+            eating[item] = price
+
             
 
             if price > dolla:
