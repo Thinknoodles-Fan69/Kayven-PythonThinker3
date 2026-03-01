@@ -40,18 +40,18 @@ for student, past in students.items():
 # Return:​
 # - updated dictionary with attendance record
 
-# def take_attendance(students_dict):
-#     for name in students_dict:
-#         attendance = input(f"Is {name} here? :").lower().strip()
-#         while attendance != "yes" and attendance != "no":
-#             print("answer yes or no")
-#             attendance = input(f"Is {name} here? :").lower().strip()
+def take_attendance(students_dict):
+    for name in students_dict:
+        attendance = input(f"Is {name} here? :").lower().strip()
+        while attendance != "yes" and attendance != "no":
+            print("answer yes or no")
+            attendance = input(f"Is {name} here? :").lower().strip()
 
 
-#         if attendance == "yes":
-#             students_dict[name].append(True)
-#         else:
-#             students_dict[name].append(False)
+        if attendance == "yes":
+            students_dict[name].append(True)
+        else:
+            students_dict[name].append(False)
 
 # take_attendance(students)
 
@@ -80,6 +80,76 @@ def attendance_percentage(student, attendance_dict):
         if status:
             sum_present += 1
         
-    return sum_present/len(attendance_list)
+    return sum_present/len(attendance_list) * 100
 
-print(attendance_percentage("sesko", students))
+# print(attendance_percentage("sesko", students))
+
+
+
+
+
+
+
+def notify_low_attendance(attendance_dict, threshold):
+    low_attendance_students = []
+    for name in attendance_dict:
+        attendance_percentage_student = attendance_percentage(name, attendance_dict)
+        if attendance_percentage_student < threshold:
+            low_attendance_students.append(name)
+    return low_attendance_students
+
+# print(notify_low_attendance(students, 50))
+
+
+def view_attendance(students):
+    for student in students:
+        print(f"{student}: {students[student]}")
+
+
+
+
+
+def menu():
+#     print("""
+# School Attendance System
+# 1.
+          
+# """)
+    while True:
+        print("-----------------------------------------------------------------------------------------------------")
+        print("Attendance System")
+        print("0. View Attendance")
+        print("1. Take Attendance")
+        print("2. Calculate Attendance Percentage for a Student")
+        print("3. Notify Low Attendance")
+        print("4. Exit Program")
+        choice = input("Enter your choice: ")
+
+        while choice not in ("0", "1", "2", "3", "4"):
+            print("Please enter only 0, 1, 2, 3 or 4")
+            choice = input("Enter your choice: ")
+
+
+
+        if choice == "0": 
+            print(view_attendance(students))
+        elif choice == "1":
+            take_attendance(students)
+        elif choice == "2":
+            student_name = input("Enter the student's name: ").lower().strip()
+            while student_name not in students:
+                print("The student is not in this list")
+                student_name = input("Enter the student's name: ").lower().strip()
+
+            student_attendance_percentage = attendance_percentage(student_name, students)
+            print(f"{student_name}'s attendance percentage: {student_attendance_percentage}")
+        elif choice == "3":
+            threshold = int(input("Enter the attendance threshold: "))
+            print(notify_low_attendance(students, threshold))
+        else:
+            break
+
+    
+
+    
+menu()
