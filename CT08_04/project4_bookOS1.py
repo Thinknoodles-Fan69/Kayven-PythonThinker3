@@ -56,10 +56,10 @@ print("----------------------------------------------")
 print("Things:")
 
 total = 0
-for thingssss, thingys in take.items():
-    
-    print(f"{thingssss}: {thingys}")
-    total += money
+for thingssss, thingyss in take.items():
+    print(f"{thingssss}: {thingyss}")
+    total += thingyss["cost"]
+
 
 print(f"Total is ${total}")
 
