@@ -1,0 +1,107 @@
+import os
+
+filepath = os.getcwd()
+fullpath = os.path.join(filepath, "tasks.txt")
+
+def create_task_file():
+    
+
+
+    if os.path.exists(fullpath):
+        overwrite = input(f"{fullpath} exist. Do you want to overwrite it? (yes/no)")
+        if overwrite == "yes":
+            with open(fullpath, "w") as file:
+                file.write("My Task List")
+        
+        else:
+            print("File not overwritten")
+    
+    else:
+        with open(fullpath, "w") as file:
+            file.write("My Task List")
+
+    return
+
+
+def view_all_tasks():
+    with open(fullpath, "r") as file:
+        lines = file.readlines()
+
+        if len(lines) < 2:
+            print("No tasks found.")
+            return
+    for i in range(len(lines)):
+        if i == 0:
+            print(lines[i].strip())
+        else:
+            print(f"{i}. {lines[i].strip()}")
+
+
+def add_new_task():
+    print("Enter a new task: ")
+    task = input()
+
+    with open(fullpath, "a") as file:
+        file.write("\n" + task)
+
+    print("\nTask added successfully!")
+    return
+
+def delete_task():
+    view_all_tasks()
+    task_number = int(input("Enter the task number to delete: "))
+    with open(fullpath, "r") as file:
+        lines = file.readlines()
+        lines.pop(task_number)
+    
+    with open(fullpath, "w") as file:
+        file.writelines(lines)
+    print("Task deleted successfully")
+
+def mark_task_done():
+    view_all_tasks()
+    task_number = int(input("Enter the task number to mark as done: "))
+    with open(fullpath, "r") as file:
+        lines = file.readlines()
+    if task_number < 1 or task_number >= len(lines):
+        print("Index is invalid. Please givea valid index")
+        return
+    lines[task_number] = lines[task_number].strip() + " (Done)\n"
+    with open(fullpath, "w") as file:
+        file.writelines(lines)
+    print("Task marked as done")
+
+
+def menu():
+    choice = input("""
+        Menu:
+        1. Create a new task file
+        2. View all tasks.
+        3. Add a new task.
+        4. Delete a task.
+        5. Mark a task as done.
+        6. Exit the program.
+               
+
+        Enter your choice:
+    """)
+
+    return choice
+
+
+
+while True:
+    choice = menu()
+    
+    if choice == "1": 
+        create_task_file()
+    elif choice == "2":
+        view_all_tasks()
+    elif choice == "3":
+        add_new_task()
+    elif choice == "4":
+        delete_task()
+    elif choice == "5":
+        mark_task_done()
+    elif choice == "6":
+        break
