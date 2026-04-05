@@ -50,3 +50,32 @@ output.write("\nPercentage of vowels: {:.2f}%".format(percentage))
 output.close()
 
 print("\nResults saved to vowel_counts.txt successfully.")
+
+import string
+
+# times = 0
+# word = input("Enter a word to search: ").lower().strip()
+# for words in lines:
+#     if word == words:
+#         times += 1
+
+# print(f" The word '{word}' appear {times} times")
+
+
+search_word = input("Enter a word to search: ").lower()
+
+clean_text = lines
+print(clean_text)
+for p in string.punctuation:
+    clean_text = clean_text.replace(p, " ")
+print(clean_text)
+
+words = clean_text.lower().split()
+
+count = 0
+for word in words:
+    if word == search_word:
+        count += 1
+
+print(f"'{search_word}' appears {count} times in Text")
+
