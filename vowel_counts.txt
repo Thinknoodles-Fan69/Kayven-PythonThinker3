@@ -1,0 +1,8 @@
+Vowel Counts:
+a : 3401
+e : 4835
+i : 2932
+o : 3227
+u : 1310
+Total vowels: 15705
+Percentage of vowels: 29.65%
