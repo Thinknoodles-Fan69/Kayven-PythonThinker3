@@ -21,5 +21,14 @@ for p in string.punctuation:
 print(clean_text)
 
 
+clean_text = clean_text.split()
+result = ""
+
+for word in clean_text:
+    result += word[0]
+
+print(result)
+
+
 
 
