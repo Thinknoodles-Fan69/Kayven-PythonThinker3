@@ -1,0 +1,7 @@
+Review Text Analysis
+---------------
+ Total Characters : 537
+ Good reviews : 7
+ Bad reviews : 5
+ Percentage of good review : 35.0
+ Overall rating : negative
